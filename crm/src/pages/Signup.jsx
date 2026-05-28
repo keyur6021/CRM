@@ -29,9 +29,20 @@ const Signup = () => {
 
   return (
     <main className="auth-page">
-      <section className="auth-panel signup">
+      <section className="auth-panel signup fade-in-up">
         <div className="auth-copy">
-          <span className="brand-mark large">E</span>
+          <svg className="brand-mark large" viewBox="0 0 42 42" width="58" height="58" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logoGradLg" x1="0" y1="0" x2="42" y2="42">
+                <stop offset="0%" stopColor="#4f8cff" />
+                <stop offset="100%" stopColor="#2563eb" />
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="42" height="42" rx="10" fill="url(#logoGradLg)" />
+            <rect x="1" y="1" width="40" height="20" rx="9" fill="rgba(255,255,255,0.08)" />
+            <circle cx="31" cy="11" r="3" fill="rgba(255,255,255,0.3)" />
+            <path d="M10 12h22v2.8H13v4.4h17v2.8H13v4.4h19v2.8H10V12z" fill="#ffffff" />
+          </svg>
           <span className="eyebrow">LocalStorage Signup</span>
           <h1>Create your account</h1>
           <p>Your profile is stored in the browser under the required users key.</p>
@@ -43,7 +54,7 @@ const Signup = () => {
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className="auth-form">
+            <Form className="auth-form stagger-children">
               {signupError && <div className="alert error-alert">{signupError}</div>}
               <label className="field">
                 <span>Email</span>
