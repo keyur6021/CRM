@@ -14,13 +14,13 @@ const StatCard = ({ label, value, meta, tone, marker }) => (
 )
 
 const DashboardCards = ({ currentUser, visibleUsers, allUsers }) => {
-  const totalEmployees = allUsers.filter((user) => user.role === 'employee').length
-  const totalManagers = allUsers.filter((user) => user.role === 'manager').length
+  const totalEmployees = allUsers.filter((user) => user.role === 'employee')?.length
+  const totalManagers = allUsers.filter((user) => user.role === 'manager')?.length
   const managedEmployees = visibleUsers.filter(
     (user) => user.role === 'employee' && user.createdBy === currentUser.id,
   ).length
-  const visibleEmployees = visibleUsers.filter((user) => user.role === 'employee').length
-  const visibleManagers = visibleUsers.filter((user) => user.role === 'manager').length
+  const visibleEmployees = visibleUsers.filter((user) => user.role === 'employee')?.length
+  const visibleManagers = visibleUsers.filter((user) => user.role === 'manager')?.length
 
   if (currentUser.role === 'employee') {
     return (
@@ -28,33 +28,33 @@ const DashboardCards = ({ currentUser, visibleUsers, allUsers }) => {
         <div className="panel-heading">
           <div>
             <span className="eyebrow">Employee Profile</span>
-            <h2>{currentUser.name || currentUser.email}</h2>
+            <h2>{currentUser?.name || currentUser?.email}</h2>
           </div>
-          <span className="role-badge employee">{roleLabels[currentUser.role]}</span>
+          <span className="role-badge employee">{roleLabels[currentUser?.role]}</span>
         </div>
         <dl className="profile-grid profile-grid-compact">
           <div>
             <dt>Email</dt>
-            <dd>{currentUser.email}</dd>
+            <dd>{currentUser?.email}</dd>
           </div>
           <div>
             <dt>Phone</dt>
-            <dd>{currentUser.number || 'Not added'}</dd>
+            <dd>{currentUser?.number || 'Not added'}</dd>
           </div>
           <div>
             <dt>DOB</dt>
-            <dd>{currentUser.dob || 'Not added'}</dd>
+            <dd>{currentUser?.dob || 'Not added'}</dd>
           </div>
           <div>
             <dt>Salary</dt>
-            <dd>{currentUser.salary ? formatCurrency(currentUser.salary) : 'Not added'}</dd>
+            <dd>{currentUser?.salary ? formatCurrency(currentUser.salary) : 'Not added'}</dd>
           </div>
         </dl>
       </div>
     )
   }
 
-  if (currentUser.role === 'manager') {
+  if (currentUser?.role === 'manager') {
     return (
       <section className="dashboard-overview" aria-label="Manager overview">
         <div className="overview-copy">
